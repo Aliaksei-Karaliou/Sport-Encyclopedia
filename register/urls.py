@@ -18,5 +18,5 @@ from django.conf.urls import url
 import views
 
 urlpatterns = [
-    url(r'^', views.landing, name='landing')
+    url(r'^register', views.register)
 ]

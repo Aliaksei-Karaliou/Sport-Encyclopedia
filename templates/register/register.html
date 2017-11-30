@@ -12,7 +12,11 @@
 </head>
 <body>
 <div class="container">
-    {{form}}
+    <form action="" method="post"> {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
 </div>
 
 <!-- Optional JavaScript -->
