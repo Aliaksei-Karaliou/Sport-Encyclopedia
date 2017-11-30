@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from landing.models import Sportsman
+from .models import *
 
 admin.site.register(Sportsman)

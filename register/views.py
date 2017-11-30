@@ -13,10 +13,6 @@ def register(request):
         password = data["password"]
         confirm = data["confirmPassword"]
 
-        print (email)
-        print (password)
-        print (confirm)
-
         if password == confirm:
             User.objects.create_user(email, email, password).save()
 
