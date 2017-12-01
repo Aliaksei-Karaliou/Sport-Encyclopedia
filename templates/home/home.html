@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
 <head>
     <title>Hello, world!</title>
@@ -9,9 +10,24 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
           integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
 </head>
 <body>
-<b>Home</b>
+{% if sportsmen %}
+    <div class="sportsman-list">
+        {% for sportsman in sportsmen %}
+            <div class="sportsman-card">
+                <!--todo put img in static-->
+                <a href='/player/{{ sportsman.id }}'>
+                    <img src="{{ sportsman.photo }}" class="sportsman-photo">
+                </a>
+                <div class="sportsman-name">{{ sportsman.name }}</div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>There are no sportsmen in the db.</p>
+{% endif %}
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

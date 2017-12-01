@@ -1,10 +1,11 @@
+from cities.management.commands import cities
 from django.db import models
 
 
 class Sportsman(models.Model):
     name = models.CharField(max_length=128)
     sport = models.CharField(max_length=128)
-    photo = models.URLField()
+    photo = models.URLField(blank=True)
     country = models.CharField(max_length=128)
 
     def __str__(self):
