@@ -2,7 +2,7 @@ body {
     background: blanchedalmond;
 }
 
-.sportsman-list {
+.list {
     display: flex;
     flex-direction: row;
     max-width: 100%;
@@ -10,7 +10,7 @@ body {
     flex-wrap: wrap;
 }
 
-.sportsman-card {
+.card {
     padding: 20px;
     margin: 20px;
     max-width: 100%;
@@ -19,12 +19,12 @@ body {
     position: relative;
 }
 
-.sportsman-photo {
+.photo {
     width: 300px;
     min-width: 30%;
 }
 
-.sportsman-name {
+.title {
     margin: 10px;
     text-align: center;
 }
