@@ -18,5 +18,6 @@ from django.conf.urls import url
 import views
 
 urlpatterns = [
-    url(r'^', views.home)
+    url(r'^$', views.show_home),
+    url(r'^club/[0-9]+$', views.show_club),
 ]

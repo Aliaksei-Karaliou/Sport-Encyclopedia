@@ -14,14 +14,14 @@
             <div class="card">
                 <!--todo put img in static-->
                 <a href='/club/{{ club.id }}'>
-                    <img src="{{ club.logo }}" class="photo">
+                    <img src="{% static club.logo|default:'img/default_logo.png' %}" class="photo">
                 </a>
-                <div class="title">{{ club.name }}</div>
+                <div class=" title">{{ club.name }}</div>
             </div>
         {% endfor %}
     </div>
 {% else %}
-    <p>There are no sportsmen in the db.</p>
+    <p>There are no clubs in the db.</p>
 {% endif %}
 
 </body>

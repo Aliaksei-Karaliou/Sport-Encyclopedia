@@ -20,6 +20,7 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/', include('home.urls')),
     url(r'^register/', include('register.urls')),
+    url(r'^', include('home.urls')),
+
 ]

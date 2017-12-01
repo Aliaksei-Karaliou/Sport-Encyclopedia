@@ -5,7 +5,7 @@ from django_countries.fields import CountryField
 
 class Club(models.Model):
     name = models.CharField(max_length=128)
-    logo = models.URLField()
+    logo = models.URLField(blank=True)
     country = CountryField()
     year = models.IntegerField(validators=[MinValueValidator(1850), MaxValueValidator(2100)], blank=True)
 
