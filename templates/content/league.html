@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-5">
+            <img src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                 class="display-image">
+        </div>
+    </div>
+{% endblock %}

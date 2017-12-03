@@ -1,0 +1,61 @@
+{#Club page#}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ club.name }}</title>
+    <link rel="stylesheet" href='{% static 'styles/bootstrap.css' %}'>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+{% if club %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="club-logo">
+                    {% if club.logo %}
+                        <img class="card-img-top home-logo" src="{{ club.logo.url }}">
+                    {% else %}
+                        <img class="card-img-top home-logo" src="{% static 'img/default_logo.png' %}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-6">
+                {{ club.name }}
+                <img src='{{ club.country.flag }}'> {{ club.country.name }}
+            </div>
+
+            <div class="col-12">
+                {% if players %}
+                    <table class="players table table-bordered ">
+                        <thead>
+                        <tr>
+                            <th>Shirt number</th>
+                            <th>Country</th>
+                            <th>Name</th>
+                            <th>Last name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for player in players %}
+                            <tr class="player">
+                                <td>{{ player.shirt_number }}</td>
+                                <td><img src='{{ player.country.flag }}'> {{ player.country.name }}</td>
+                                <td>{{ player.first_name }}</td>
+                                <td>{{ player.last_name }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <b>There are no players in this club</b>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% else %}
+    Club not found
+{% endif %}
+</body>
+</html>

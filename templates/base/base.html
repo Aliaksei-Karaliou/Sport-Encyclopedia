@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ title }}</title>
+
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+
+</head>
+<body>
+{% include 'base/navbar.html' %}
+
+{% block content %}
+{% endblock content %}
+
+<div class="wrapper">
+    <div class="wrapper-content">
+
+    </div>
+
+</div>
+
+{% include 'base/footer.html' %}
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

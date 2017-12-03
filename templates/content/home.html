@@ -1,0 +1,24 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        {% for league in leagues %}
+            <a href="/league/{{ league.id }}" class="landing-card-link">
+                <div class="card col" style="width: 20rem;">
+                    <img class="card-img-top landing-card-logo" alt="Card image cap"
+                         src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}">
+                    <div class="card-block">
+
+                        <h4 class="card-title">{{ league.name }}<img src='{{ league.country.flag }}'
+                                                                     style='vertical-align: middle'/></h4>
+                        {% if league.info %}
+                            <p class="card-text">{{ league.info }} </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}
