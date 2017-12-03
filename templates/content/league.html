@@ -3,10 +3,34 @@
 {% load static %}
 
 {% block content %}
+
     <div class="row">
         <div class="col-5">
             <img src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
                  class="display-image">
         </div>
+
+         <div class="col-7">
+             <p>{{ league.name }}</p>
+        </div>
+    </div>
+
+    <div class="row ">
+        {% for club in clubs %}
+            <div class=" col-3 card league-club-card align-self-center">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <img src="{% if club.logo %} {{ club.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                             class="league-club-logo">
+                    </div>
+                    <div class="col-6">
+                        <div style="text-align: center">
+                            {{ club.name }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endfor %}
     </div>
 {% endblock %}
