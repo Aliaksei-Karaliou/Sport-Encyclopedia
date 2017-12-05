@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^league/([0-9]+)$', views.leagues),
     url(r'^club/([0-9]+)$', views.clubs),
     url(r'^player/([0-9]+)$', views.players),
+    url(r'^search/(.*)$', views.search),
 ]
 
 if settings.DEBUG:

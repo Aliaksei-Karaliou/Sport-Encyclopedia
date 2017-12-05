@@ -32,7 +32,7 @@
         <p>
             <b>Club:</b>
             <a href="/club/{{ player.club.id }}">
-                <img src="{{ player.club.logo.url }}" width="16px" height="auto"> {{ player.club.name }}
+                <img src="{{ player.club.logo.url }}" class="text-icon"> {{ player.club.name }}
             </a>
         </p>
 
@@ -70,9 +70,14 @@
                 <tr class="player-table-row">
                     <td>{{ history_item.start_year }} - {% firstof history_item.end_year "..." %}</td>
                     <td>
+                        {% if history_item.club.logo %}
+                            <img src="{{ history_item.club.logo.url }}" class="text-icon">
+                        {% endif %}
+
                         <a href="/club/{{ history_item.club.id }}">
                             {{ history_item.club }}
                         </a>
+
                         {% if history_item.is_loan %}
                             (loan)
                         {% endif %}

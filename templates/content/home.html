@@ -3,23 +3,26 @@
 {% load static %}
 
 {% block content %}
+
     <div class="row card-row">
         {% for league in leagues %}
 
-            <div class="card col-2 landing-card wrap" style="width: 20rem;">
-                <a href="/league/{{ league.id }}" class="landing-card-link">
-                    <img class="landing-card-logo card-img-top " alt="Card image cap"
-                         src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}">
-                    <div class="card-block">
-
-                        <h4 class="card-title">
-                            <img src='{{ league.country.flag }}'/>
-                            {{ league.name }}
-                        </h4>
+        <div class=" col-3 card league-club-card align-self-center">
+            <a href="/league/{{ league.id }}">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <img src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                             class="league-club-logo">
                     </div>
-                </a>
-            </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <p>{{ league.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-        {% endfor %}
+    {% endfor %}
     </div>
 {% endblock %}

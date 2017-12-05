@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% if leagues %}
+        <div style="margin: 20px">
+            <b>Leagues: </b>
+            <div class="row d-flex p-2">
+                {% for league in leagues %}
+
+                    <div class=" col-3 card league-club-card align-self-center">
+                        <a href="/league/{{ league.id }}">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <img src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                                         class="league-club-logo">
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <p>{{ league.name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if clubs %}
+        <div style="margin: 20px">
+            <b>Clubs: </b>
+            <div class="row d-flex p-2">
+                {% for club in clubs %}
+
+                    <div class=" col-3 card league-club-card align-self-center">
+                        <a href="/club/{{ club.id }}">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <img src="{% if club.logo %} {{ club.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                                         class="league-club-logo">
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <p>{{ club.name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if players %}
+        <div style="margin: 20px">
+            <b>Players: </b>
+            <div class="row d-flex p-2">
+                {% for player in players %}
+
+                    <div class=" col-3 card league-player-card align-self-center">
+                        <a href="/player/{{ player.id }}">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <img src="{% if player.photo %} {{ player.photo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                                         class="league-club-logo">
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-center">
+                                        <p>{{ player.full_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock content %}
