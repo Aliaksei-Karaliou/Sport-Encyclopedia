@@ -25,6 +25,8 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^$', views.landing),
     url(r'^league/([0-9]+)$', views.leagues),
+    url(r'^club/([0-9]+)$', views.clubs),
+    url(r'^player/([0-9]+)$', views.players),
 ]
 
 if settings.DEBUG:

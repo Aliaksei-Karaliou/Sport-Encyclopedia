@@ -1,0 +1,89 @@
+{% extends 'content/base-content.html' %}
+
+{% load static %}
+
+{% block info_content %}
+
+    <p>
+        <b style="font-size: 1.5em">{{ player.full_name }}</b>
+    </p>
+
+    <br>
+
+    <p>
+        <b>Full name:</b>
+        {{ player.first_name }} {{ player.last_name }}
+    </p>
+
+    {% if player.bdate %}
+        <p>
+            <b>Birth date:</b>
+            {{ player.bdate|date:"d.m.Y" }}
+            ({{ player.age }})
+        </p>
+    {% endif %}
+
+    <p>
+        <b>Country:</b>
+        <img src="{{ player.country.flag }}"> {{ player.country.name }}
+    </p>
+
+    {% if player.club %}
+        <p>
+            <b>Club:</b>
+            <a href="/club/{{ player.club.id }}">
+                <img src="{{ player.club.logo.url }}" width="16px" height="auto"> {{ player.club.name }}
+            </a>
+        </p>
+
+        {% if player.shirt_number %}
+            <p>
+                <b>Shirt number:</b> {{ player.shirt_number }}
+            </p>
+        {% endif %}
+
+    {% endif %}
+
+    {% if player.info %}
+        <br>
+        <p>{{ player.info }}</p>
+    {% endif %}
+
+{% endblock info_content %}
+
+{% block base_content %}
+
+    <table class="player-table table table-bordered">
+        <thead class="thead-dark player-table-row-title">
+        <tr>
+            <th scope="col">Years</th>
+            <th scope="col">Club</th>
+            <th scope="col">Matches</th>
+            <th scope="col">Goals</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% if history %}
+
+            {% for history_item in history %}
+                <tr class="player-table-row">
+                    <td>{{ history_item.start_year }} - {% firstof history_item.end_year "..." %}</td>
+                    <td>
+                        <a href="/club/{{ history_item.club.id }}">
+                            {{ history_item.club }}
+                        </a>
+                        {% if history_item.is_loan %}
+                            (loan)
+                        {% endif %}
+                    </td>
+                    <td>{% firstof history_item.matches "-" %}</td>
+                    <td>{% firstof history_item.goals "-" %}</td>
+                </tr>
+            {% endfor %}
+
+        {% endif %}
+        </tbody>
+    </table>
+
+{% endblock base_content %}

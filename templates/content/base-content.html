@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-5 club-info">
+            <img src="{% if logo %} {{ logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                 class="club-logo">
+        </div>
+
+        <div class="col-6 base-info">
+            {% block info_content %}
+            {% endblock info_content %}
+        </div>
+
+
+    </div>
+
+    {% block base_content %}
+    {% endblock base_content %}
+
+{% endblock %}

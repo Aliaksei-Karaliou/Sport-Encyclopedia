@@ -1,17 +1,10 @@
-.landing-card-logo {
-    width: 300px;
-    height: 400px;
-    margin: 0;
-    padding: 0;
-}
-
 .landing-card-link {
     text-decoration: none;
 }
 
-.display-image {
-    width: 400px;
-    height: 530px;
+.league-logo {
+    width: 375px;
+    height: 500px;
 }
 
 .league-club-logo {
@@ -23,4 +16,53 @@
 
 .league-club-card {
     margin: 10px;
+}
+
+.landing-card {
+    margin: 20px;
+}
+
+.landing-card-logo {
+    width: 300px;
+    height: 400px;
+}
+
+.club-logo {
+    width: 400px;
+    height: auto;
+}
+
+.player-table {
+    margin-top: 20px;
+}
+
+.club-info {
+    margin: 20px;
+}
+
+.club-captain {
+    width: 50px;
+    height: auto;
+}
+
+.player-table-row:hover {
+    background: #ebcccc;
+}
+
+.player-table-row-title {
+    background: burlywood;
+}
+
+.base-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.base-info > * {
+    margin: 0;
+}
+
+.card-row {
+    display: flex;
+    justify-content: center;
 }

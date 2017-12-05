@@ -1,61 +1,86 @@
-{#Club page#}
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ club.name }}</title>
-    <link rel="stylesheet" href='{% static 'styles/bootstrap.css' %}'>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
-</head>
-<body>
-{% if club %}
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-4">
-                <div class="club-logo">
-                    {% if club.logo %}
-                        <img class="card-img-top home-logo" src="{{ club.logo.url }}">
-                    {% else %}
-                        <img class="card-img-top home-logo" src="{% static 'img/default_logo.png' %}">
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-6">
-                {{ club.name }}
-                <img src='{{ club.country.flag }}'> {{ club.country.name }}
-            </div>
+{% extends 'content/base-content.html' %}
 
-            <div class="col-12">
-                {% if players %}
-                    <table class="players table table-bordered ">
-                        <thead>
-                        <tr>
-                            <th>Shirt number</th>
-                            <th>Country</th>
-                            <th>Name</th>
-                            <th>Last name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for player in players %}
-                            <tr class="player">
-                                <td>{{ player.shirt_number }}</td>
-                                <td><img src='{{ player.country.flag }}'> {{ player.country.name }}</td>
-                                <td>{{ player.first_name }}</td>
-                                <td>{{ player.last_name }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <b>There are no players in this club</b>
+{% load static %}
+
+{% block info_content %}
+
+    <p>
+        <b style="font-size: 1.5em">{{ club.name }}</b>
+    </p>
+
+    <br>
+    <p>
+        <b>Country:</b>
+        <img src="{{ club.country.flag }}"> {{ club.country.name }}
+    </p>
+
+    {% if club.league %}
+        <p>
+            <b>League:</b>
+            <a href="/league/{{ club.league.id }}">
+
+                {% if club.league.logo %}
+                    <img src="{{ club.league.logo.url }}" width="16px" height="auto">
                 {% endif %}
-            </div>
-        </div>
-    </div>
-{% else %}
-    Club not found
-{% endif %}
-</body>
-</html>
+
+                {{ club.league.name }}
+            </a>
+        </p>
+    {% endif %}
+
+    {% if club.info %}
+        <br>
+        <p>{{ club.info }}</p>
+    {% endif %}
+
+{% endblock %}
+
+{% block base_content %}
+
+
+    <table class="player-table table table-bordered">
+        <thead class="thead-dark player-table-row-title">
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Country</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% if players %}
+
+            {% for player in players %}
+                <tr class="player-table-row">
+
+                    <th scope="row">{{ player.shirt_number }}</th>
+                    <td>
+                        <img src="{{ player.country.flag }}">
+                        {{ player.country.name }}
+                    </td>
+
+                    <td>
+                        <a href="/player/{{ player.id }}"> {{ player.full_name }}</a>
+
+                        {% if player.is_captain %}
+                            (captain)
+                        {% endif %}
+                    </td>
+
+                    {% if player.bdate %}
+                        <td style="width:10%">{{ player.age }}</td>
+                    {% else %}
+                        <td style="width:10%"></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+
+
+        {% else %}
+            <b>There are no players in this team found</b>
+        {% endif %}
+        </tbody>
+    </table>
+
+{% endblock base_content %}

@@ -1,36 +1,53 @@
-{% extends 'base/base.html' %}
+{% extends 'content/base-content.html' %}
 
 {% load static %}
 
-{% block content %}
+{% block info_content %}
+    <p>
+        <b style="font-size: 1.5em">{{ league.name }}</b>
+    </p>
 
-    <div class="row">
-        <div class="col-5">
-            <img src="{% if league.logo %} {{ league.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
-                 class="display-image">
-        </div>
+    <br>
+    <p>
+        <b>Country:</b>
+        <img src="{{ league.country.flag }}"> {{ league.country.name }}
+    </p>
 
-         <div class="col-7">
-             <p>{{ league.name }}</p>
-        </div>
-    </div>
+    <p>
+        <b>League level:</b>
+        {{ league.level }}
+    </p>
 
-    <div class="row ">
+    {% if league.info %}
+        <br>
+        <p>{{ league.info }}</p>
+    {% endif %}
+{% endblock %}
+
+{% block base_content %}
+    <div class="row d-flex p-2">
         {% for club in clubs %}
+
             <div class=" col-3 card league-club-card align-self-center">
-                <div class="row align-items-center">
-                    <div class="col-6">
-                        <img src="{% if club.logo %} {{ club.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
-                             class="league-club-logo">
-                    </div>
-                    <div class="col-6">
-                        <div style="text-align: center">
-                            {{ club.name }}
+                <a href="/club/{{ club.id }}">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <img src="{% if club.logo %} {{ club.logo.url }} {% else %} {% static 'img/default_logo.png' %} {% endif %}"
+                                 class="league-club-logo">
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <p>{{ club.name }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
+
+
 
         {% endfor %}
     </div>
-{% endblock %}
+
+
+{% endblock base_content %}
